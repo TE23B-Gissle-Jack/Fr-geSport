@@ -3,7 +3,7 @@ List<string> questions = ["How cold is absolute zero?", "What is the captial of 
 List<string> a = ["-273", "Copenhagen", "Tetris", "E", "Abrehamn Lincon", "yes", "1.20"];
 List<string> b = ["0", "Gotgenburg", "Fifa", "Mc^2", "Gorge Washington", "no", "2.0"];
 List<string> c = ["-200", "London", "Minecraft", "C", "Rondald Reagan", "uhhhh", "1.18"];
-List<string> d = ["50", "Stockholm", "Fortnite", "X", "Joe Biden", "both", "1.19"];
+List<string> d = ["50", "Stockholm", "Fortnite", "X", "Joe Biden", "both", "1.9"];
 List<string> right = ["a", "d", "c", "c", "b", "c", "d"];
 
 int amtRight = 0;
@@ -14,16 +14,23 @@ Console.ForegroundColor = ConsoleColor.DarkYellow;
 Console.WriteLine("\nYou will be asked a series of 8 Questions. Try and get as many as possible :)  Press Enter to Begin");
 Console.ReadLine();
 
-theQuiz();
+TheQuiz();
 
-void theQuiz(){
-question();
-finalQuestion();
+void TheQuiz(){
+ questions = ["How cold is absolute zero?", "What is the captial of Sweden?", "What is the most sold game in the world?", "What is the variable that is most often used to rperecent the speed of light?", "Who was the first American precident?", "Is this question rigged?", "In wich uppdate was Mincraft combat changed"];
+ a = ["-273", "Copenhagen", "Tetris", "E", "Abrehamn Lincon", "yes", "1.20"];
+ b = ["0", "Gotgenburg", "Fifa", "Mc^2", "Gorge Washington", "no", "2.0"];
+ c = ["-200", "London", "Minecraft", "C", "Rondald Reagan", "uhhhh", "1.18"];
+ d = ["50", "Stockholm", "Fortnite", "X", "Joe Biden", "both", "1.9"];
+ right = ["a", "d", "c", "c", "b", "c", "d"];
+
+Question();
+FinalQuestion();
 }
 
-void question()
+void Question()
 {
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 7; i++)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         int qInt = Random.Shared.Next(a.Count);
@@ -41,15 +48,15 @@ void question()
         if (guess == right[qInt])
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("That is Right. Good job!");
+            Right();
             amtRight++;
         }
         else
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Wrong!");
+            Wrong();
         }
-        Console.ReadLine();
+        //Console.ReadLine();
         questions.RemoveAt(qInt);
         a.RemoveAt(qInt);
         b.RemoveAt(qInt);
@@ -59,7 +66,7 @@ void question()
     }
 }
 
-void finalQuestion(){
+void FinalQuestion(){
     string finRightAwns;
     string promtR;
     string promtW;
@@ -101,7 +108,7 @@ void finalQuestion(){
         if (guess == finRightAwns)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(promtR);
+            Console.WriteLine(promtR+ "\n");
             amtRight++;
         }
         else
@@ -114,5 +121,37 @@ void finalQuestion(){
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.WriteLine("Press Enter to Try Again");
     Console.ReadLine();
-    theQuiz();
+    TheQuiz();
+}
+void Wrong(){
+    Console.WriteLine("""
+                          .-'''-.                                       ___   
+                         '   _    \                                  .'/   \  
+                       /   /` '.   \    _..._                       / /     \ 
+       _     _        .   |     \  '  .'     '.   .--./)            | |     | 
+ /\    \\   //.-,.--. |   '      |  '.   .-.   . /.''\\             | |     | 
+ `\\  //\\ // |  .-. |\    \     / / |  '   '  || |  | |            |/`.   .' 
+   \`//  \'/  | |  | | `.   ` ..' /  |  |   |  | \`-' /              `.|   |  
+    \|   |/   | |  | |    '-...-'`   |  |   |  | /("'`                ||___|  
+     '        | |  '-                |  |   |  | \ '---.              |/___/  
+              | |                    |  |   |  |  /'""'.\             .'.--.  
+              | |                    |  |   |  | ||     ||           | |    | 
+              |_|                    |  |   |  | \'. __//            \_\    / 
+                                     '--'   '--'  `'---'              `''--'  
+
+""");
+}
+
+void Right(){
+    Console.WriteLine("""
+  _______ _           _     _       _____  _       _     _     _ 
+ |__   __| |         | |   (_)     |  __ \(_)     | |   | |   | |
+    | |  | |__   __ _| |_   _ ___  | |__) |_  __ _| |__ | |_  | |
+    | |  | '_ \ / _` | __| | / __| |  _  /| |/ _` | '_ \| __| | |
+    | |  | | | | (_| | |_  | \__ \ | | \ \| | (_| | | | | |_  |_|
+    |_|  |_| |_|\__,_|\__| |_|___/ |_|  \_\_|\__, |_| |_|\__| (_)
+                                              __/ |              
+                                             |___/               
+
+""");
 }
